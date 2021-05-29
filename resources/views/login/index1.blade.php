@@ -122,10 +122,12 @@
                             <form id="login-form" action="{{route('login')}}" method="post" role="form" style="display: block;">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
+                                    <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="{{old('name')}}">
+                                    @error('email')<div class="alert alert-danger"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    @error('password')<div class="alert alert-danger"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">

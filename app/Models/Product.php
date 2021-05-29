@@ -9,12 +9,12 @@ class Product extends Model
 {
     use HasFactory;
     public $fillable = [
-        'name',
-        'code',
-        'images',
-        'amount',
-        'price',
-        'brand_id'
+        'product_name',
+        'product_descrip',
+        'product_images',
+        'product_price',
+        'brand_id',
+        'category_id'
     ];
 
     public function user(){

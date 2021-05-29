@@ -7,25 +7,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Dashboard</title>
-
     <!-- Favicon -->
-    <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.html">
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.html">
+    <link rel="shortcut icon" href="/assets/images/logo/favicon.png">
 
     <!-- core dependcies css -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/vendor/PACE/themes/blue/pace-theme-minimal.css" />
-    <link rel="stylesheet" href="assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <!-- page css -->
 
     <!-- core css -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="assets/css/animate.min.css" rel="stylesheet">
-    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/app.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,9 +34,9 @@
         <div class="header navbar">
             <div class="header-container">
                 <div class="nav-logo">
-                    <a href="index.html">
-                        <div class="logo logo-dark" style="background-image: url('assets/images/logo/logo.png')"></div>
-                        <div class="logo logo-white" style="background-image: url('assets/images/logo/logo-white.png')"></div>
+                    <a href="{{route('admin.index')}}">
+                        <div class="logo logo-dark" style="background-image: url('/assets/images/logo/logo.png')"></div>
+                        <div class="logo logo-white" style="background-image: url('/assets/images/logo/logo-white.png')"></div>
                     </a>
                 </div>
                 <ul class="nav-left">
@@ -345,13 +344,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="active">
-                                <a href="{{route('form-create-category')}}">Thêm Danh Mục Sản Phẩm</a>
+                                <a href="{{route('form-create-cate')}}">Thêm Danh Mục Sản Phẩm</a>
                             </li>
                             <li class="active">
                                 <a href="{{route('category')}}">Danh Mục Sản Phẩm</a>
                             </li>
                             <li>
-                                <a href="{{route('form-create-product')}}">Thêm Sản phẩm</a>
+                                <a href="{{route('form-create-pro')}}">Thêm Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="{{route('product')}}">Danh Sách Sản phẩm</a>
@@ -374,11 +373,13 @@
 
             <!-- Content Wrapper START -->
             <div class="main-content">
-                    @yield('category')
-                    @yield('category1')
-                    @yield('product')
-                    @yield('product1')
-                    @yield('member')
+                @yield('show-category')
+                @yield('create-category')
+                @yield('edit-category')
+                @yield('show-product')
+                @yield('create-product')
+                @yield('edit-product')
+                @yield('show-member')
             </div>
             <!-- Content Wrapper END -->
 
