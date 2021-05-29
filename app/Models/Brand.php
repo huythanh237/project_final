@@ -10,8 +10,7 @@ class Brand extends Model
     use HasFactory;
 
     public $fillable = [
-        'name',
-        'code'
+        'brand_name'
     ];
 
     public function products(){

@@ -19,10 +19,10 @@
 
                 <form action="{{route('register')}}" method="post">
                     @csrf
-                    <input type="text" placeholder="Full Name..." required=" " >
-                    <input type="email" placeholder="Email Address" required=" " >
-                    <input type="password" placeholder="Password" required=" " >
-                    <input type="password" placeholder="Password Confirmation" required=" " >
+                    <input type="text" name="name" placeholder="Full Name...">
+                    <input type="email" name="email" placeholder="Email Address">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" placeholder="Password Confirmation">
                     <div class="register-check-box">
                         <div class="check">
                             <label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>

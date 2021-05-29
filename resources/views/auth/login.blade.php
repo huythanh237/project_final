@@ -19,10 +19,13 @@
             <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
                 <form action="{{route('auth.login')}}" method="post">
                     @csrf
-                    <input type="email" placeholder="Email Address" required=" " >
-                    <input type="password" placeholder="Password" required=" " >
-                    <div class="forgot">
-                        <a href="#">Forgot Password?</a>
+                    <input type="email" name="email" placeholder="Email Address">
+                    @error('email')<div class="alert alert-danger"> {{$message}} </div>@enderror
+                    <input type="password" name="password" placeholder="Password">
+                    @error('password')<div class="alert alert-danger"> {{$message}} </div>@enderror
+                    <div class="form-group text-center">
+                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                        <label for="remember"> Remember Me</label>
                     </div>
                     <input type="submit" value="Login">
                 </form>

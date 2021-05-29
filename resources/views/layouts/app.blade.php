@@ -1,13 +1,7 @@
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Super Market | Home</title>
+    <title>Super Market | @yield('title')</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,19 +10,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome icons -->
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!-- js -->
-    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="/js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <!-- start-smoth-scrolling -->
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="/js/move-top.js"></script>
+    <script type="text/javascript" src="/js/easing.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -48,15 +42,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul>
                 <li><a href="{{route('auth.Register')}}"> Create Account </a></li>
                 <li><a href="{{route('auth.show')}}">Login</a></li>
-                <li><a href="contact.html">Help</a></li>
+                <li><a href="{{route('contact')}}">Help</a></li>
             </ul>
         </div>
         <div class="product_list_header">
-            <form action="#" method="post" class="last">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="display" value="1">
-                <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-            </form>
+                <a class="w3view-cart" href="{{route('show-cart')}}"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
+
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -74,9 +65,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1><a href="{{route('index')}}">Super Market</a></h1>
         </div>
         <div class="w3l_search">
-            <form action="#" method="post">
-                <input type="search" name="Search" placeholder="Search for a Product..." required="">
-                <button type="submit" class="btn btn-default search" aria-label="Left Align">
+            <form action="{{\Illuminate\Support\Facades\URL::to('/tim-kiem')}}" method="post">
+                {{csrf_field()}}
+                <input type="search" name="Search_Keyword" placeholder="Search Product..." required="">
+                <button type="submit" name="Search_Button" class="btn btn-default search" aria-label="Left Align">
                     <i class="fa fa-search" aria-hidden="true"> </i>
                 </button>
                 <div class="clearfix"></div>
@@ -109,12 +101,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
                                 <div class="multi-gd-img">
+                                    @foreach($categories as $category)
                                     <ul class="multi-column-dropdown">
-                                        <li><a href="groceries.html">Đồ uống</a></li>
-                                        <li><a href="groceries.html">Bánh kẹo</a></li>
-                                        <li><a href="groceries.html">Cashews</a></li>
-                                        <li><a href="groceries.html">Dry Fruit</a></li>
+                                        <li><a href="{{route('hienthi', $category->category_id)}}">{{$category->category_name}}</a></li>
                                     </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </ul>
@@ -125,18 +116,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
                                 <div class="multi-gd-img">
+                                    @foreach($brands as $brand)
                                     <ul class="multi-column-dropdown">
-                                        <li><a href="beverages.html">Pepsi</a></li>
-                                        <li><a href="beverages.html">Coca Cola</a></li>
-                                        <li><a href="beverages.html">Fanta</a></li>
+                                        <li><a href="{{route('product-brand', $brand->brand_id)}}">{{$brand->brand_name}}</a></li>
                                     </ul>
+                                    @endforeach
                                 </div>
 
                             </div>
                         </ul>
                     </li>
-                    <li><a href="offers.html">Giới thiệu</a></li>
-                    <li><a href="contact.html">Liên hệ</a></li>
+                    <li><a href="{{route('about')}}">Giới thiệu</a></li>
+                    <li><a href="{{route('contact')}}">Liên hệ</a></li>
                 </ul>
             </div>
         </nav>
@@ -149,9 +140,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 @yield('login')
 
-@yield('product')
+@yield('product-detail')
+
+@yield('checkout')
+
+@yield('category')
 
 @yield('register')
+
+@yield('search')
+
+@yield('about')
+
+@yield('ShowCart')
+
+@yield('contact')
+
+@yield('all-product')
+
+@yield('product-brand')
 <!-- //footer -->
 <div class="footer">
     <div class="container">
@@ -166,32 +173,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
-                <h3>Information</h3>
+                <h3>Thông tin</h3>
                 <ul class="info">
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.html">Contact Us</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.html">Short Codes</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.html">FAQ's</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Special Products</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('about')}}">Giới Thiệu</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('contact')}}">Liên Hệ</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('all-product')}}">Sản Phẩm</a></li>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
-                <h3>Category</h3>
+                <h3>Danh mục</h3>
+                @foreach($categories as $category)
                 <ul class="info">
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.html">Beverages</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('hienthi', $category->category_id)}}">{{$category->category_name}}</a></li>
                 </ul>
+                @endforeach
             </div>
             <div class="col-md-3 w3_footer_grid">
                 <h3>Profile</h3>
                 <ul class="info">
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.html">My Cart</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('auth.show')}}">Đăng nhập</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{route('auth.Register')}}">Đăng ký</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
@@ -209,7 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
@@ -229,7 +231,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
+<script src="/js/minicart.min.js"></script>
 <script>
     // Mini Cart
     paypal.minicart.render({
@@ -241,8 +243,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 </script>
 <!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<script src="/js/skdslider.min.js"></script>
+<link href="/css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
